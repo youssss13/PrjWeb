@@ -1,0 +1,17 @@
+{{> header}}
+
+<div class="list-group">
+    {{#person}}
+    <a href="?profile={{id}}" class="list-group-item list-group-item-action">
+        <div class="d-flex w-100 justify-content-between">
+        <h5 class="mb-1">{{name}}</h5>
+        <small>since {{register}}</small>
+        </div>
+        <p class="mb-1">{{description}}</p>
+        <small>Cliquer pour afficher le profil</small>
+    </a>
+    {{/person}}
+</div>
+
+
+{{> footer}}
