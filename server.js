@@ -13,6 +13,9 @@ var querystring = require('querystring');
 
 app.use(express.static(__dirname + '/public'));
 
+
+//index
+
 app.get('/', (req, res) => {
   var params = querystring.parse(url.parse(req.url).query);
   if('search' in params)
@@ -29,6 +32,22 @@ app.get('/', (req, res) => {
     res.render('index');
   }
 });
+
+//Page de connexion
+
+app.get('/login', (req, res) => {
+  res.render('login');
+});
+
+var bodyParser = require('body-parser');
+var urlencodedparser = bodyParser.urlencoded({ extended: false });
+
+app.post('/login', urlencodedparser, (req, res) => {
+  res.send("id : " + req.body.login + " pwd : " + req.body.pwd);
+});
+
+
+//pages inconnues
 
 app.use(function(req, res, next){
   res.setHeader('Content-Type', 'text/plain');
