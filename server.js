@@ -13,30 +13,54 @@ var querystring = require('querystring');
 
 app.use(express.static(__dirname + '/public'));
 
+/* *****************DATABASE ********************** */
+var mysql = require('mysql');
 
-//index
+var sql = mysql.createConnection({
+  host: "127.0.0.1",
+  user: "root",
+  password: "",
+  database: "prj_web"
+});
+
+sql.connect(function(err) {
+  if (err) throw err;
+  console.log("Database connected !");
+  
+});
+
+/* ******************* END DATABASE ***************** */
 
 app.get('/', (req, res) => {
   var params = querystring.parse(url.parse(req.url).query);
   if('search' in params)
   {
-    //profils exemples en attendant la mise en place de la base de données
-    res.render('search',{person: [{id : 1, name: 'DJ Khaled', birthdate : "05-09-1998", description : "gneugneugneu", register : "02-03-2020"}, {id : 2, name: 'Con Finés', birthdate : "05-09-1998", description : "gneugneugneu", register : "02-03-2020"},{id : 3, name: 'Jean Sorpa', birthdate : "05-09-1998", description : "gneugneugneu", register : "02-03-2020"}]})
+    var req = "SELECT * FROM USER WHERE login LIKE '%"+ params.search +"%'";
+    sql.query(req, (err, result, fields) => {
+    if (err) throw err;
+    res.render('search', {result: result, title: params.search});
+    });
   }
   else if('profile' in params)
   {
-    res.render('profile',{id : params.profile});
+    // PAS DE PROTECTION CONTRE INJECTION ***********************************************************
+    var req = "SELECT * FROM USER WHERE id = "+ params.profile;
+    sql.query(req, (err, result, fields) => {
+    if (err) throw err;
+    console.log(result[0].login)
+    res.render('profile', {person: result[0], title: result[0].login});
+    });
   }
   else
   {
-    res.render('index');
+    res.render('index', {title: 'Accueil'});
   }
 });
 
 //Page de connexion
 
 app.get('/login', (req, res) => {
-  res.render('login');
+  res.render('login', {title: 'Login'});
 });
 
 var bodyParser = require('body-parser');

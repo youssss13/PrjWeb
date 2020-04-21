@@ -1,5 +1,6 @@
 body{
     background-color: #183866 !important;
+    color: white;
 }
 .list-group{
     margin: 10%;
@@ -15,9 +16,8 @@ body{
     background-color: #102542;
 }
 input{
-    background-color: #183866 !important;
+    color: black !important;
 }
 *{
-    color: white !important;
     font-family: Ubuntu;
 }
