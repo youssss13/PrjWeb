@@ -1,19 +1,15 @@
 body{
-    background-color: #183866 !important;
-    color: white;
+    background-color: #d2d2d2 !important;
 }
 .list-group{
     margin: 10%;
 }
 #blockLog{
-    background-color: #102542;
+    background-color: #f8f9fa;
     margin: 11% 35% 12% 35%;
     padding: 2%;
     box-shadow: 0px 0px 17px #00000047;
     text-align: center;
-}
-.navbar{
-    background-color: #102542;
 }
 input{
     color: black !important;
@@ -21,3 +17,69 @@ input{
 *{
     font-family: Ubuntu;
 }
+
+
+/* NAVBAR */
+
+
+.main-menubox {
+    display: none;
+}
+
+.main-menu:hover .main-menubox{
+    display: block;
+}
+
+
+.dropdown-submenu{
+    position: relative;
+}
+.dropdown-submenu a::after{
+    transform: rotate(-90deg);
+    position: absolute;
+    right: 3px;
+    top: 40%;
+}
+.dropdown-submenu:hover .dropdown-menu, .dropdown-submenu:focus .dropdown-menu{
+    display: flex;
+    flex-direction: column;
+    position: absolute !important;
+    margin-top: -30px;
+    left: 100%;
+}
+@media (max-width: 992px) {
+    .dropdown-menu{
+        width: 50%;
+    }
+    .dropdown-menu .dropdown-submenu{
+        width: auto;
+    }
+
+    .dropdown-menu{ left: -131%;}
+}
+
+.dropdown-submenu a::after {
+    right: 16px;
+    top: 42%;
+}
+
+.dropdown-item {
+    padding: 8px 18px;
+}
+
+    .dropdown-item{white-space: normal}
+
+    .navbar-expand-lg .navbar-nav .dropdown-menu {
+    font-size: 14px;
+}
+
+.dropdown-item:focus, .dropdown-item:hover {
+    color: #16181b;
+    text-decoration: none;
+    background-color: #dcdcdc;
+}
+
+  li.nav-item{    padding: 10px 20px;}
+
+
+/* FIN NAVBAR */
